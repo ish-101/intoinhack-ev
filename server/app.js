@@ -1,20 +1,19 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+import express from 'express';
+import logger from 'morgan'
+import mongoose from 'mongoose';
+import routes from './routes';
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const app = express();
 
-var app = express();
+mongoose.connect('mongodb://localhost:27017/intoinhack-ev', {
+    useNewUrlParser: true,
+    useCreateIndex: true
+});
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api', routes);
 
 module.exports = app;

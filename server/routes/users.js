@@ -1,9 +1,15 @@
-var express = require('express');
-var router = express.Router();
+import express from 'express';
+const router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+import User from '../controllers/User';
 
-module.exports = router;
+router.route('/')
+    .post(User.create)
+    .get(User.readList);
+
+router.route('/:id')
+    .get(User.readOne)
+    .put(User.update)
+    .delete(User.delete);
+
+export default router;
