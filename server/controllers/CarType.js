@@ -1,12 +1,12 @@
-import User from '../models/User';
+import CarType from '../models/CarType';
 
-class UserController {
+class CarTypeController {
 
     create = (req, res) => {
-        const newUser = new User(req.body);
-        newUser.save()
-            .then((createdUser) => {
-                res.send(createdUser);
+        const newCarType = new CarType(req.body);
+        newCarType.save()
+            .then((createdCarType) => {
+                res.send(createdCarType);
             })
             .catch((err) => {
                 res.status(500).send(err);
@@ -14,7 +14,7 @@ class UserController {
     };
 
     readList = (req, res) => {
-        User.find(req.body, (err, list) => {
+        CarType.find(req.body, (err, list) => {
             if (!err) {
                 res.send(list);
             } else {
@@ -24,7 +24,7 @@ class UserController {
     };
 
     readOne = (req, res) => {
-        User.findById(req.params.id, (err, user) => {
+        CarType.findById(req.params.id, (err, user) => {
             if (!err && user) {
                 res.send(user);
             } else {
@@ -34,7 +34,7 @@ class UserController {
     };
 
     update = (req, res) => {
-        User.updateOne({ _id: req.params.id }, req.body, (err, dbResult) => {
+        CarType.updateOne({ _id: req.params.id }, req.body, (err, dbResult) => {
             if (!err) {
                 res.send(dbResult);
             } else {
@@ -44,7 +44,7 @@ class UserController {
     };
 
     delete = (req, res) => {
-        User.deleteOne({ _id: req.params.id })
+        CarType.deleteOne({ _id: req.params.id })
             .then((dbResult) => {
                 res.send(dbResult);
             })
@@ -53,16 +53,6 @@ class UserController {
             });
     };
 
-    login = (req, res) => {
-        User.findOne({ username: req.body.username }, (err, user) => {
-            if (!err && user) {
-                res.send(user);
-            } else {
-                res.status(500).send(err);
-            }
-        });
-    }
-
 }
 
-export default new UserController();
+export default new CarTypeController();

@@ -12,4 +12,7 @@ router.route('/:id')
     .put(User.update)
     .delete(User.delete);
 
+router.route('/login')
+    .post(User.login);
+
 export default router;

@@ -1,0 +1,10 @@
+<form (submit)="signUp()">
+  <h4>First Time User</h4>
+  <label>Username
+    <input  name="username" [(ngModel)]="user.username">
+  </label>
+  <label>License Number
+    <input name="license_number" [(ngModel)]="user.license_number">
+  </label>
+  <input type="submit" value="Sign Up">
+</form>

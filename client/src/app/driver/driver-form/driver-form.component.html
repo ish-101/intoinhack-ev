@@ -1,0 +1,14 @@
+  <form>
+  <label *ngIf="carTypes">Car Type
+    <select>
+      <option *ngFor="let carType of carTypes">{{carType.name}}</option>
+    </select>
+  </label>
+  <label>Location
+    <input>
+  </label>
+  <label>Charging
+    <input type="range">
+    99%
+  </label>
+</form>

@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.screens {
+  display: flex;
+
+  > * {
+    height: 100vh;
+    width: calc(100vh/(16/9));
+    border-right: solid 1px black;
+  }
+}
