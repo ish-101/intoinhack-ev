@@ -1,10 +1,31 @@
-<form (submit)="signUp()">
-  <h4>First Time User</h4>
-  <label>Username
-    <input  name="username" [(ngModel)]="user.username">
-  </label>
-  <label>License Number
-    <input name="license_number" [(ngModel)]="user.license_number">
-  </label>
-  <input type="submit" value="Sign Up">
+
+	<form (submit)="signUp()" class="form-new">
+
+		<svg class="Rectangle_2123">
+				<rect id="Rectangle_2123" rx="0" ry="0" x="0" y="0" width="414" height="430">
+				</rect>
+			</svg>
+			<div id="New_User">
+				<span>New User</span>
+			</div>
+
+			<div id="Username_A1_Text_5">
+				<input type="text" name="username" placeholder="Username" [(ngModel)]="user.username">
+			</div>
+
+
+			<div id="License_Number">
+				<input type="text" name="license_number" placeholder="License Number" [(ngModel)]="user.license_number">
+			</div>
+			<div id="Group_2106">
+				<svg class="Rectangle_573_A1_Rectangle_7">
+					<linearGradient spreadMethod="pad" id="LinearGradientFill2" x1="0.7805118560791016" x2="0.06727450340986252" y1="-0.514154851436615" y2="2.0838282108306885">
+						<stop offset="0" stop-color="#f2b2af" stop-opacity="1"></stop>
+						<stop offset="1" stop-color="#b68ce1" stop-opacity="1"></stop>
+					</linearGradient>
+					<rect id="Rectangle_573_A1_Rectangle_7" rx="31.68792724609375" ry="31.68792724609375" x="0" y="0" width="155.991" height="63.376">
+					</rect>
+				</svg>
+				<input type="submit" name="Register" id="REGISTER" value="REGISTER">
+			</div>
 </form>
