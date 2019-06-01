@@ -1,4 +1,5 @@
 import VehicleSimulation from '../models/VehicleSimulation';
+import CarType from '../models/CarType';
 
 class VehicleSimulationController {
 
@@ -10,7 +11,7 @@ class VehicleSimulationController {
             })
             .catch((err) => {
                 res.status(500).send(err);
-            })
+            });
     };
 
     readList = (req, res) => {
@@ -24,9 +25,9 @@ class VehicleSimulationController {
     };
 
     readOne = (req, res) => {
-        VehicleSimulation.findById(req.params.id, (err, user) => {
-            if (!err && user) {
-                res.send(user);
+        VehicleSimulation.findById(req.params.id, (err, vehicleSimulation) => {
+            if (!err && vehicleSimulation) {
+                res.send(vehicleSimulation);
             } else {
                 res.status(404).send();
             }
@@ -34,11 +35,18 @@ class VehicleSimulationController {
     };
 
     update = (req, res) => {
-        VehicleSimulation.updateOne({ _id: req.params.id }, req.body, (err, dbResult) => {
-            if (!err) {
-                res.send(dbResult);
+        CarType.findOne({ name: req.body.car_type.name }, (err1, car_type) => {
+            if (!err1 && car_type) {
+                req.body.car_type = car_type._id;
+                VehicleSimulation.updateOne({ _id: req.params.id }, req.body, (err2, dbResult) => {
+                    if (!err2) {
+                        res.send(dbResult);
+                    } else {
+                        res.status(404).send(err2);
+                    }
+                });
             } else {
-                res.status(404).send(err);
+                res.status(500).send(err1);
             }
         });
     };

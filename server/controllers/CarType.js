@@ -24,9 +24,9 @@ class CarTypeController {
     };
 
     readOne = (req, res) => {
-        CarType.findById(req.params.id, (err, user) => {
-            if (!err && user) {
-                res.send(user);
+        CarType.findById(req.params.id, (err, carType) => {
+            if (!err && carType) {
+                res.send(carType);
             } else {
                 res.status(404).send();
             }

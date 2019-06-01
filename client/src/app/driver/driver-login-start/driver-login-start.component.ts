@@ -17,7 +17,7 @@ export class DriverLoginStartComponent implements OnInit {
   }
 
   login(): void {
-    this.userService.login(this.user.username)
+    this.userService.loginUser(this.user.username)
       .subscribe((user: User) => {
         this.userService.storeToken(user.username);
           this.router.navigate(['driver', 'home']);

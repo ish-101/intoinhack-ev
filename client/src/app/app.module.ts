@@ -14,6 +14,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DriverLoginStartComponent } from './driver/driver-login-start/driver-login-start.component';
 import { DriverLoginFirstComponent } from './driver/driver-login-first/driver-login-first.component';
 import { DriverHomeComponent } from './driver/driver-home/driver-home.component';
+import { DriverLogoutComponent } from './driver/driver-logout/driver-logout.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DriverHomeComponent } from './driver/driver-home/driver-home.component'
     DriverBaseComponent,
     DriverLoginStartComponent,
     DriverLoginFirstComponent,
-    DriverHomeComponent
+    DriverHomeComponent,
+    DriverLogoutComponent
   ],
   imports: [
     BrowserModule,

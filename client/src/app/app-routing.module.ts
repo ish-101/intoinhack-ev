@@ -4,6 +4,7 @@ import {AdminContainerComponent} from "./admin/admin-container/admin-container.c
 import {StationContainerComponent} from "./station/station-container/station-container.component";
 import {DriverLoginComponent} from "./driver/driver-login/driver-login.component";
 import {DriverHomeComponent} from "./driver/driver-home/driver-home.component";
+import {DriverLogoutComponent} from "./driver/driver-logout/driver-logout.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'driver', pathMatch: 'full' },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'driver', children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'login', component: DriverLoginComponent },
+      { path: 'logout', component: DriverLogoutComponent },
       { path: 'home', component: DriverHomeComponent }
       // { path: 'find' },
       // { path: 'station/:StationId' },

@@ -1,14 +1,17 @@
-  <form>
+<form *ngIf="vehicleSimulation" (change)="updateVehicleSimulation()">
   <label *ngIf="carTypes">Car Type
-    <select>
-      <option *ngFor="let carType of carTypes">{{carType.name}}</option>
+    <select [(ngModel)]="vehicleSimulation.car_type.name" name="carType">
+      <option *ngFor="let carType of carTypes" [defaultSelected]="vehicleSimulation.car_type.name === carType.name">{{carType.name}}</option>
     </select>
   </label>
-  <label>Location
-    <input>
+  <label>Latitude
+    <input [(ngModel)]="vehicleSimulation.latitude" name="latitude">
   </label>
+    <label>Longitude
+      <input [(ngModel)]="vehicleSimulation.longitude" name="longitude">
+    </label>
   <label>Charging
-    <input type="range">
-    99%
+    <input type="range" [(ngModel)]="vehicleSimulation.charging" name="charging">
+    {{vehicleSimulation.charging}}%
   </label>
 </form>

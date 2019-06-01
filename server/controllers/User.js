@@ -1,20 +1,47 @@
 import User from '../models/User';
+import VehicleSimulation from "../models/VehicleSimulation";
+import CarType from "../models/CarType";
+import {Schema} from "mongoose";
 
 class UserController {
 
     create = (req, res) => {
-        const newUser = new User(req.body);
-        newUser.save()
-            .then((createdUser) => {
-                res.send(createdUser);
-            })
-            .catch((err) => {
-                res.status(500).send(err);
-            })
+        CarType.findOne({}, (err1, carType) => {
+            if (!err1 && carType) {
+                const newVehicleSimulation = new VehicleSimulation({
+                    car_type: carType._id,
+                    latitude: 28.511474,
+                    longitude: 77.091263,
+                    charging: 99
+                });
+                newVehicleSimulation.save()
+                    .then((createdVehicleSimulation) => {
+                        const newUser = new User(req.body);
+                        newUser.vehicle_simulation = createdVehicleSimulation;
+                        newUser.save()
+                            .then((createdUser) => {
+                                res.send(createdUser);
+                            })
+                            .catch((err3) => {
+                                res.status(500).send(err3);
+                            });
+                    })
+                    .catch((err2) => {
+                        res.status(500).send(err2);
+                    });
+            } else {
+                res.status(500).send();
+            }
+        });
     };
 
     readList = (req, res) => {
-        User.find(req.body, (err, list) => {
+        User.find(req.body).populate({
+            path: 'vehicle_simulation',
+            populate: {
+                path: 'car_type'
+            }
+        }).exec((err, list) => {
             if (!err) {
                 res.send(list);
             } else {
@@ -24,7 +51,12 @@ class UserController {
     };
 
     readOne = (req, res) => {
-        User.findById(req.params.id, (err, user) => {
+        User.findById(req.params.id).populate({
+            path: 'vehicle_simulation',
+            populate: {
+                path: 'car_type'
+            }
+        }).exec((err, user) => {
             if (!err && user) {
                 res.send(user);
             } else {
